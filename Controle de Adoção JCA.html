@@ -284,10 +284,6 @@ table{width:100%;border-collapse:collapse}
 .etab td,.etab th{padding:8px 10px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;vertical-align:middle}
 .etab th{font-size:12px;color:var(--muted);font-weight:500}
 .etab tr:last-child td{border-bottom:0}
-.prod th.n,.prod td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.prod td.n.z{color:var(--muted)}
-.prod td small{display:block;color:var(--muted);font-size:12.5px}
-.prod tfoot td{font-weight:600;border-top:1px solid var(--line-2)}
 @media (max-width:760px){.etab .hide-m{display:none}}
 .sig{display:grid;gap:10px}
 .sig > div{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;padding-bottom:10px;border-bottom:1px solid var(--line)}
@@ -609,12 +605,6 @@ details.more .in{padding:6px 20px 16px;overflow-x:auto}
           <h2>Acompanhamento da sprint</h2>
           <p class="sub">Meta, cerimônias e as leituras de processo e técnica. O que estiver aqui entra no Sprint Report.</p>
           <div class="box" id="sprintBox"></div>
-        </div>
-
-        <div class="sec" style="margin-top:28px">
-          <h2>Produtividade por pessoa</h2>
-          <p class="sub" id="prodSub"></p>
-          <div class="chart" style="overflow-x:auto" id="prodBox"></div>
         </div>
 
 
@@ -962,7 +952,7 @@ const TEAM0=[{name:'Helder',role:'Tech Lead',dev:true},{name:'João Roberto',rol
    Lead time = criação até o fechamento. Estados de PBI agrupados em três:
    não iniciado (Backlog e Pronto para desenvolvimento), em desenvolvimento e em produção. */
 const ADO={
-  when:'2026-10-05T15:56',url:'https://dev.azure.com/ITJCA/Projeto%20Vanilla/_boards',now:'2026-10-05T18:56:00Z',
+  when:'2026-10-06T10:25',url:'https://dev.azure.com/ITJCA/Projeto%20Vanilla/_boards',now:'2026-10-06T13:25:00Z',
   done:[ // [id, título, responsável, criado, iniciado, fechado]
     [72930,'Repositórios Front-end','Antonio Balbino','2026-09-14T13:04:51Z','2026-09-16T12:48:09Z','2026-09-17T11:26:54Z'],
     [72935,'Repositórios BFF','Eugenio Mbi','2026-09-14T13:09:51Z','2026-09-15T17:49:17Z','2026-09-21T12:49:45Z'],
@@ -975,7 +965,8 @@ const ADO={
     [73805,'Configuração do Bootstrap','Antonio Balbino',1,'2026-09-30T12:48:02Z'],
     [73609,'Descoberta · Ofertas','João Roberto',3,'2026-09-30T13:08:03Z'],
     [73869,'Configuração do Pact Broker','Kelvi Marim',2,'2026-10-01T12:16:37Z'],
-    [74161,'Esteira de publicação do Vanilla','Kelvi Marim',0,'2026-10-05T12:48:56Z']
+    [74161,'Esteira de publicação do Vanilla','Kelvi Marim',0,'2026-10-05T12:48:56Z'],
+    [74638,'Lojinha · Disponibilização de origens e destinos','Lucas Figueiredo',0,'2026-10-06T12:48:31Z']
   ],
   /* Uma entrada por sprint lida no Azure. status: closed | running. Sprints sem entrada aparecem como planejadas. */
   sp:{
@@ -1010,46 +1001,46 @@ const ADO={
         ['Sprint 1','Levar o spike de contrato para a sprint','Os testes de contrato Front/BFF (73488) sustentam o contrato-first da POC.','QA e BFF']
       ]
     },
-    1:{status:'running',day:6,days:10,
+    1:{status:'running',day:7,days:10,
       dates:['28/09','29/09','30/09','01/10','02/10','05/10','06/10','07/10','08/10','09/10'],
-      bd:{unit:'pts',commit:17,remaining:[17,17,17,17,17,17]},
-      bu:{unit:'tasks',scope:[33,34,34,35,39,42],done:[0,1,1,4,4,8]},
-      summary:'A Sprint 1 segue fora do eixo no 6º dia útil: nenhum dos 10 PBIs foi concluído e 8 das 42 tasks fecharam. O board voltou a andar em 05/10, com 4 tasks concluídas e a esteira de publicação em desenvolvimento, mas entrou mais um PBI sem estimativa. 5 PBIs (9 pts) seguem sem início e 24 tasks não têm executor de fato.',
-      progress:[['Pontos entregues',0,17,'pts'],['Tasks concluídas',8,42,'tasks'],['PBIs iniciados',5,10,'PBIs']],
+      bd:{unit:'pts',commit:17,remaining:[17,17,17,17,17,17,17]},
+      bu:{unit:'tasks',scope:[33,34,34,35,39,42,57],done:[0,1,1,4,4,8,26],reg:15},
+      summary:'No 7º dia útil a Sprint 1 ainda não entregou nenhum PBI, mas andou: BFF e Bootstrap foram para homologação em 06/10 e a esteira passou a publicar em homologação, com 4 releases bem-sucedidas desde 05/10. O board saltou para 26 de 57 tasks concluídas, mas 15 delas foram registradas hoje já prontas (9 trazidas do projeto JCA_DEVOPS e 6 criadas e fechadas no mesmo minuto). 4 PBIs (9 pts) seguem sem início e 23 tasks não têm executor de fato.',
+      progress:[['Pontos entregues',0,17,'pts'],['Tasks concluídas',26,57,'tasks'],['PBIs iniciados',6,10,'PBIs']],
       vitals:[
-        ['bad','Ritmo de entrega','0','de 17 pts','Nenhum PBI concluído no 6º dia. O ritmo ideal pedia 10,2 pts entregues.'],
-        ['bad','Tasks concluídas','19%','8 de 42','60% da sprint já passou. No ritmo atual, de 1,3 task por dia, a sprint fecha com cerca de 13 tasks concluídas.'],
-        ['bad','Trabalho não iniciado','5','PBIs · 9 pts','Os 4 PBIs liberados desde 24/09 seguem parados e entrou mais um em 05/10 (74638), sem estimativa.'],
-        ['bad','Tasks sem executor','24','de 42','13 sem responsável e 11 atribuídas ao PO, incluindo endpoints de Back e BFF.'],
-        ['warn','Escopo','+27%','33 → 42 tasks','2 PBIs entraram depois do início: a esteira de publicação (01/10) e a Lojinha de origens e destinos (05/10).'],
-        ['warn','Envelhecimento','1','de 5 em curso','A Configuração do BFF está há 6,2 dias em desenvolvimento, acima do p50; 2 de 3 tasks já concluídas.'],
-        ['ok','Board atualizado','4','tasks fechadas em 05/10','O board voltou a andar: Sonar, dependabot e a estrutura do BFF concluídos, e a esteira entrou em desenvolvimento.'],
-        ['warn','Trabalho em paralelo','2','itens por pessoa','Antonio tem 2 tasks em elaboração e Kelvi tem 2 PBIs em desenvolvimento.']
+        ['bad','Ritmo de entrega','0','de 17 pts','Nenhum PBI concluído no 7º dia. O ritmo ideal pedia 11,9 pts entregues. BFF e Bootstrap (3 pts) estão em homologação e são os próximos a fechar.'],
+        ['bad','Tasks concluídas','46%','26 de 57','15 das 26 entraram no board em 06/10 já concluídas. Sem elas, são 11 de 42 (26%) com 70% da sprint passada.'],
+        ['bad','Trabalho não iniciado','4','PBIs · 9 pts','Mais comprados, Outros também compraram, Parceiros Marketplace e Design System seguem sem início, com 3 dias úteis restantes.'],
+        ['bad','Tasks sem executor','23','de 57','12 sem responsável e 11 atribuídas ao PO, incluindo endpoints de Back e BFF.'],
+        ['warn','Escopo','+73%','33 → 57 tasks','24 tasks entraram depois do início: 15 em 06/10, já concluídas, e as da esteira e da Lojinha, que chegaram como PBIs novos.'],
+        ['warn','Envelhecimento','3','de 6 em curso','Acima do p50 de 5,8 dias: BFF (7,0), Ofertas (6,1) e Bootstrap (6,0). BFF e Bootstrap já estão em homologação.'],
+        ['ok','Board atualizado','18','tasks fechadas em 06/10','BFF e Bootstrap foram para homologação, e a Lojinha e as integrações do Pact Broker começaram. 15 das 18 foram registradas hoje.'],
+        ['warn','Trabalho em paralelo','3','itens por pessoa','Carlos tem 3 tasks em elaboração no Pact Broker e Kelvi tem 2 PBIs em desenvolvimento.']
       ],
       pbis:[
-        [73810,'Configuração do BFF','dev','Eugenio Mbi',2,6.2,2,1,0,'warn','Acima do p50; falta 1 task (tooling)'],
-        [73805,'Configuração do Bootstrap','dev','Antonio Balbino',1,5.3,4,2,0,'ok','4 de 6 tasks concluídas; PR de multi-zones mergeado'],
-        [73609,'Descoberta · Ofertas','dev','João Roberto',3,5.2,2,1,3,'warn','Endpoint de BFF a fazer'],
-        [73869,'Configuração do Pact Broker','dev','Kelvi Marim',2,4.3,0,1,2,'ok','POC do broker em andamento'],
-        [74161,'Esteira de publicação do Vanilla','dev','Kelvi Marim',null,0.3,0,0,0,'warn','Entrou em desenvolvimento em 05/10; sem estimativa e sem tasks'],
-        [73811,'Componentes do Design System','ns','Antonio Balbino',2,10.1,0,0,8,'bad','8 tasks sem responsável; destrava as telas'],
-        [73610,'Descoberta · Mais comprados','ns','João Roberto',2,11.0,0,0,4,'bad','4 tasks sem responsável'],
-        [73611,'Descoberta · Outros também compraram','ns','João Roberto',2,11.0,0,0,5,'bad','Back e BFF atribuídos ao PO'],
-        [73613,'Descoberta · Parceiros Marketplace','ns','João Roberto',3,11.0,0,0,4,'bad','Back e BFF atribuídos ao PO'],
-        [74638,'Lojinha · Disponibilização de origens e destinos','ns','Lucas Figueiredo',null,0.0,0,0,3,'warn','Novo: criado em 05/10 direto na Sprint 1, sem estimativa e sem épico. Parece antecipar parte do 73596 (Sprint 2, épico 1.1 Home Wemobi): tipo de embarque, iconização e integração com localidade']
+        [73810,'Configuração do BFF','dev','Eugenio Mbi',2,7.0,3,0,0,'ok','Em homologação desde 06/10; 3 de 3 tasks concluídas'],
+        [73805,'Configuração do Bootstrap','dev','Antonio Balbino',1,6.0,6,0,0,'warn','Em homologação desde 06/10; 6 de 6 tasks, mas os PRs 11530, 11535 e 11537 seguem abertos'],
+        [73609,'Descoberta · Ofertas','dev','João Roberto',3,6.1,2,1,3,'warn','Acima do p50; endpoint de BFF a fazer'],
+        [73869,'Configuração do Pact Broker','dev','Kelvi Marim',2,5.2,1,3,0,'ok','Broker em homologação; integrações Front e BFF iniciadas em 06/10'],
+        [74161,'Esteira de publicação do Vanilla','dev','Kelvi Marim',null,1.0,14,0,0,'warn','Sem estimativa; 14 tasks registradas em 06/10 já concluídas, 8 delas trazidas do projeto JCA_DEVOPS'],
+        [74638,'Lojinha · Disponibilização de origens e destinos','dev','Lucas Figueiredo',null,0.0,0,1,2,'warn','Em desenvolvimento desde 06/10; sem estimativa e sem épico. Parece antecipar parte do 73596 (Sprint 2, épico 1.1 Home Wemobi): tipo de embarque, iconização e integração com localidade'],
+        [73811,'Componentes do Design System','ns','Antonio Balbino',2,11.0,0,0,8,'bad','8 tasks sem responsável; destrava as telas'],
+        [73610,'Descoberta · Mais comprados','ns','João Roberto',2,11.9,0,0,4,'bad','4 tasks sem responsável'],
+        [73611,'Descoberta · Outros também compraram','ns','João Roberto',2,11.9,0,0,5,'bad','Back e BFF atribuídos ao PO'],
+        [73613,'Descoberta · Parceiros Marketplace','ns','João Roberto',3,11.9,0,0,4,'bad','Back e BFF atribuídos ao PO']
       ],
       people:[
-        ['Sem responsável','',13,0,0],['João Roberto','PO',11,0,0],['Eugenio Mbi','Dev BFF',0,1,2],['Antonio Balbino','Dev Frontend',0,2,1],
-        ['Carlos Eduardo','QA',2,1,1],['Matheus Cardoso','Dev Backend',0,1,2],['Kelvi Marim','DevOps',0,0,2],['Lucas Figueiredo','Dev BFF',3,0,0]
+        ['Sem responsável','',12,0,0],['João Roberto','PO',11,0,0],['Eugenio Mbi','Dev BFF',0,0,3],['Antonio Balbino','Dev Frontend',0,0,3],
+        ['Carlos Eduardo','QA',0,3,1],['Matheus Cardoso','Dev Backend',0,1,2],['Kelvi Marim','DevOps',0,0,17],['Lucas Figueiredo','Dev BFF',3,1,0]
       ],
       recs:[
-        ['Hoje','Replanejar a sprint na daily','Com 4 dias úteis restantes e 5 PBIs sem início, decidir o que sai. Sugestão: levar Mais comprados, Outros também compraram e Parceiros Marketplace para a Sprint 2, e confirmar se a Lojinha (74638) entra mesmo nesta sprint. Ela parece antecipar parte do 73596, da Sprint 2: checar a sobreposição para não contar o mesmo trabalho duas vezes.','PO e agilista','2026-10-05'],
-        ['Hoje','Fechar o que está quase pronto','O BFF tem 2 de 3 tasks concluídas e o PR mergeado; o Bootstrap tem 4 de 6. Fechar os dois tira o throughput do zero.','Eugenio e Antonio','2026-10-06'],
-        ['Hoje','Dar executor às 24 tasks','Atribuir as 13 tasks sem responsável e trocar o PO pelos desenvolvedores nas 11 tasks de Back e BFF.','Tech lead','2026-10-06'],
-        ['Até 06/10','Decidir o Design System','Iniciar com dono e data, ou retirar da sprint. As 8 tasks de componentes destravam as telas da Sprint 2.','Tech lead e PO','2026-10-06'],
-        ['Esta semana','Estimar o que entrou na sprint','A esteira de publicação (74161) e a Lojinha de origens e destinos (74638) entraram sem pontos e não aparecem no burndown.','PO e tech lead','2026-10-07'],
+        ['Hoje','Fechar BFF e Bootstrap na homologação','Os dois estão em homologação com todas as tasks concluídas. Aprovar hoje tira o throughput do zero (3 pts). No Bootstrap, mergear ou justificar os PRs abertos 11530, 11535 e 11537.','PO e Antonio','2026-10-06'],
+        ['Hoje','Replanejar a sprint','Com 3 dias úteis restantes e 4 PBIs sem início, levar Mais comprados, Outros também compraram e Parceiros Marketplace para a Sprint 2, e decidir se o Design System fica.','PO e agilista','2026-10-06'],
+        ['Até 07/10','Dar executor às 23 tasks','Atribuir as 12 tasks sem responsável e trocar o PO pelos desenvolvedores nas 11 tasks de Back e BFF.','Tech lead','2026-10-07'],
+        ['Até 07/10','Registrar o trabalho quando ele acontece','15 tasks entraram hoje já concluídas, 9 delas feitas entre 29/09 e 02/10 no projeto JCA_DEVOPS. Isso distorce o burnup e o cycle time: criar a task no Vanilla antes de começar, inclusive para DevOps.','Agilista e Kelvi','2026-10-07'],
+        ['Esta semana','Estimar e situar o que entrou','A esteira (74161) e a Lojinha (74638) seguem sem pontos. A Lojinha começou hoje sem épico: checar a sobreposição com o 73596, da Sprint 2.','PO e tech lead','2026-10-07'],
         ['Esta semana','Terminar antes de começar','Limitar a 1 item em elaboração por pessoa até a sprint voltar ao eixo.','Agilista','2026-10-09'],
-        ['Sprint 2','Board como fonte da verdade','Manter a atualização diária que voltou em 05/10 e criar os estados Bloqueado e Aguardando QA, como pede o E14.1.','Agilista','2026-10-13']
+        ['Sprint 2','Board como fonte da verdade','Manter a atualização diária e criar os estados Bloqueado e Aguardando QA, como pede o E14.1.','Agilista','2026-10-13']
       ]
     }
   },
@@ -1071,11 +1062,11 @@ const ADO={
     [73207,"6.2 Pós-venda · Meu Perfil","Planejamento",{"6":[[73723,"Passageiro frequente","ns",1],[73724,"Reset de senha","ns",1],[73725,"Meus dados","ns",1],[73726,"Cartão salvo","ns",2],[73727,"Alterar senha","ns",1]]}],
     [73208,"7.1 Conteúdo · Conteúdo e SEO","Planejamento",{"6":[[73728,"Fale Conosco","ns",1],[73729,"Central de ajuda","ns",1],[73730,"Cupom","ns",1]],"-1":[[73731,"Institucional","ns",1],[73732,"Rotas","ns",1],[73733,"LP destino","ns",2]]}],
     [73734,"8.1 Oferta · Tarifa e Parceiros","Parking Lot",{"-1":[[73735,"Tarifa padrão","ns",1],[73736,"Preço por canal","ns",2],[73737,"Priorização Oferta","ns",2],[73738,"Comissão","ns",1],[73739,"Parceiro: J3","ns",2],[73740,"Parceiro: Praxio","ns",2],[73741,"Parceiro: Smartbus","ns",2],[73742,"Parceiro: Titbus operador","ns",2],[73743,"Parceiro: Totalbus","ns",2],[73744,"Tarifa negociada","ns",2],[73745,"Preço por rota","ns",2],[73746,"Preço por assento","ns",2],[73747,"Preço roundtrip","ns",2],[73748,"Take Rate","ns",1],[73749,"Comissão parceiro","ns",2]]}],
-    [0,"Sem épico (setup técnico)","",{"1":[[73805,"Configuração do Bootstrap","dev",1],[73810,"Configuração do BFF","dev",2],[73811,"Criação dos componentes Design System","ns",2],[73869,"Configuração do pact broker","dev",2],[74161,"Esteira de Publicação do Vanilla","dev",null],[74638,"Lojinha - Disponibilização de Origens e Destinos","ns",null]]}]
+    [0,"Sem épico (setup técnico)","",{"1":[[73805,"Configuração do Bootstrap","dev",1],[73810,"Configuração do BFF","dev",2],[73811,"Criação dos componentes Design System","ns",2],[73869,"Configuração do pact broker","dev",2],[74161,"Esteira de Publicação do Vanilla","dev",null],[74638,"Lojinha - Disponibilização de Origens e Destinos","dev",null]]}]
   ],
   release:{sprint:6,label:'Release candidata'},
   sprints:[ // plano por sprint: [sprint, produção, desenvolvimento, pronto, backlog, pts]
-    [0,5,0,0,0,0],[1,0,5,4,1,17],[2,0,0,3,14,22],[3,0,0,0,9,14],[4,0,0,0,16,18],[5,0,0,0,22,29],[6,0,0,0,21,27],[-1,0,0,0,48,91]
+    [0,5,0,0,0,0],[1,0,6,4,0,17],[2,0,0,3,14,22],[3,0,0,0,9,14],[4,0,0,0,16,18],[5,0,0,0,22,29],[6,0,0,0,21,27],[-1,0,0,0,48,91]
   ],
   epics:[ // [id, título, estado, PBIs, pts, produção, desenvolvimento]
     [72934,'Setup inicial do projeto','Operações',5,0,5,0],
@@ -1101,12 +1092,13 @@ const ADO={
     [94360,'2026-10-02T14:35:00Z','cancelada','teste-5'],[94361,'2026-10-02T14:59:00Z','falha','teste-6'],
     [94372,'2026-10-02T17:14:00Z','parcial','automático'],[94383,'2026-10-02T18:15:00Z','cancelada','teste-7'],
     [94386,'2026-10-02T19:02:00Z','cancelada','automático'],[94387,'2026-10-02T19:09:00Z','cancelada','automático'],[94404,'2026-10-02T20:46:00Z','cancelada','automático'],
-    [94409,'2026-10-05T12:36:00Z','cancelada','automático'],[94410,'2026-10-05T13:13:00Z','cancelada','automático'],[94420,'2026-10-05T14:46:00Z','parcial','automático, modo segmentado']
+    [94409,'2026-10-05T12:36:00Z','cancelada','automático'],[94410,'2026-10-05T13:13:00Z','cancelada','automático'],[94420,'2026-10-05T14:46:00Z','parcial','automático, modo segmentado'],
+    [94445,'2026-10-05T23:24:00Z','ok','homologação, segmentado'],[94447,'2026-10-05T23:38:00Z','ok','homologação, rollback'],[94449,'2026-10-05T23:52:00Z','ok','homologação, segmentado'],[94458,'2026-10-06T12:28:00Z','ok','homologação, direto']
   ],
   alerts:[ // pontos de atenção do board, válidos para todas as sprints
     {bad:1,t:'<b>Responsáveis:</b> 130 dos 147 PBIs do backlog estão sem responsável.'},
     {bad:1,t:'<b>DoD e DoR:</b> o item "Definição do DoD e DoR" está em Doing desde 19/08. O E14.1 pede os dois publicados antes da Sprint 0.'},
-    {t:'<b>Esteira sem deploy:</b> 14 execuções entre 02/10 e 05/10, 1 com sucesso e nenhuma em produção. Frequência de deploy e DORA seguem sem leitura.'},
+    {t:'<b>Esteira só em homologação:</b> 18 execuções entre 02/10 e 06/10. As 4 desde 05/10 à noite publicaram em homologação com sucesso; nenhuma em produção. Frequência de deploy e DORA seguem sem leitura.'},
     {t:'<b>Board sem estados de espera:</b> as colunas vão de Backlog a Em Produção, sem fila de QA nem bloqueio. Isso impede medir o tempo bloqueado e o tempo em fila de QA.'},
     {t:'<b>Amostra pequena:</b> o cycle time vem de 5 PBIs de setup da Sprint 0. A primeira leitura com funcionalidades vem ao fim da Sprint 1.'},
     {t:'<b>Calendário:</b> o Azure tem as Sprints 0 a 6, até 18/12; aqui está prevista uma Sprint 7 (21 a 31/12).'}
@@ -1119,29 +1111,31 @@ const ADO={
     ['E14.1',12,'Sem evidência','O board de PBIs não tem estados de espera nem motivo de retorno. O fluxo vai direto de Backlog a Em Produção.',[
       ['Board','Backlog items','Colunas: Backlog › Pronto para Desenvovimento › Em Desenvolvimento › Done','Configuração atual','Boards › Boards › Projeto Vanilla Team › Backlog items. Abra as configurações do board (engrenagem › Colunas) para ver os estados.']]],
     ['E16.1',4,'Em adoção','O MCP do Azure DevOps já lê o projeto e alimenta este painel. A pipeline de release existe desde 02/10; o uso do Claude Code nela não está registrado no board.',[
-      ['Pipeline',514,'vanilla-release','Criada em 02/10 · 14 execuções até 05/10','Pipelines › vanilla-release (definição 514).']]],
-    ['E10',5,'Em adoção','O Pact Broker está sendo montado na Sprint 1 e os testes de contrato BFF × Back estão planejados em 4 PBIs, ainda sem início. O spike de contrato Front/BFF da Sprint 0 não começou.',[
+      ['Pipeline',514,'vanilla-release','Criada em 02/10 · 18 execuções até 06/10, 4 delas publicando em homologação','Pipelines › vanilla-release (definição 514).']]],
+    ['E10',5,'Em adoção','O Pact Broker subiu em homologação e as integrações com Front e BFF começaram em 06/10. Os testes de contrato BFF × Back estão planejados em 4 PBIs, ainda sem início. O spike de contrato Front/BFF da Sprint 0 não começou.',[
       ['PBI',73869,'Configuração do pact broker','Em Desenvolvimento · Kelvi Marim','Boards › Sprints › Sprint 1 › PBI #73869.'],
       ['Task',74160,'POC Pact Broker','Em Elaboração · Carlos Eduardo','Sprint 1 › filha do PBI #73869.'],
-      ['Task',74214,'Integração: Front -> Pact Broker','A Fazer · Carlos Eduardo','Sprint 1 › filha do PBI #73869.'],
-      ['Task',74215,'Integração: BFF -> Pact Broker','A Fazer · Carlos Eduardo','Sprint 1 › filha do PBI #73869.'],
+      ['Task',74141,'Subir o Pact Broker em homologacao','Pronto em 06/10 · Kelvi Marim','Sprint 1 › filha do PBI #73869. Trazida do projeto JCA_DEVOPS em 06/10.'],
+      ['Task',74214,'Integração: Front -> Pact Broker','Em Elaboração desde 06/10 · Carlos Eduardo','Sprint 1 › filha do PBI #73869.'],
+      ['Task',74215,'Integração: BFF -> Pact Broker','Em Elaboração desde 06/10 · Carlos Eduardo','Sprint 1 › filha do PBI #73869.'],
       ['Task',73887,'Teste de contrato BFFxBack','A Fazer · João Roberto','Sprint 1 › filha do PBI #73609 (Ofertas). Há tasks iguais nos PBIs #73610 (#73895), #73611 (#73886) e #73613 (#73903).'],
       ['Spike',73488,'POC testes de contrato Front/BFF + Pact JS + Pact Broker','To do · Eugenio Mbi','Boards › Work items › #73488, iteração Sprint 0.']]],
     ['E10',3,'Em adoção','Sonar e dependabot foram configurados em 05/10 (tasks concluídas na Sprint 1). O Renovate segue proposto por PR em 5 repositórios, sem merge.',[
       ['Task',73807,'Configuração do Sonar','Pronto em 05/10 · Kelvi Marim','Sprint 1 › filha do PBI #73805 (Configuração do Bootstrap).'],
       ['Task',73808,'Configuração do dependabot','Pronto em 05/10 · Kelvi Marim','Sprint 1 › filha do PBI #73805.'],
       ['PR',11481,'chore: Configure Renovate','Ativo desde 30/09 · alvo master','Repos › jca-edge-bff › Pull requests. Os mesmos PRs estão abertos em jca-edge-cms (#11480), jca-zone-fe-checkout (#11482), jca-zone-fe-account (#11483) e jca-zone-fe-institutional (#11484).','jca-edge-bff']]],
-    ['E08',5,'Em adoção','A pipeline de release roda build e Quality Gate por aplicação (front, BFF e CMS), configurados como grupos separados em 02/10. Ainda não publicou em produção.',[
-      ['Pipeline',514,'vanilla-release','Parâmetros qg_fe_checkout, qg_edge_bff, qg_edge_cms e outros','Pipelines › vanilla-release › Run pipeline: os Quality Gates aparecem como opções por aplicação.'],
+    ['E08',5,'Em adoção','A pipeline de release publica em homologação desde 05/10, com modos direto, segmentado e rollback. O Quality Gate saiu da release (PR 11557) e passou a rodar no PR pelo SonarCloud. Ainda não publicou em produção.',[
+      ['Build',94458,'Release 2026.10.06 em homologação (modo direto)','Sucesso em 06/10','Pipelines › vanilla-release › Runs › #94458. As execuções #94445 e #94449 publicaram em modo segmentado e a #94447 testou o rollback.'],
+      ['PR',11557,'refactor: release sem Quality Gate','Concluído em 05/10 · alvo master','Repos › vanilla-release › Pull requests › Concluídos › #11557.','vanilla-release'],
+      ['Task',74683,'Quality Gate do SonarCloud no PR dos repositórios do Vanilla','Pronto em 06/10 · Kelvi Marim','Sprint 1 › filha do PBI #74161 (Esteira de publicação).'],
       ['Commit','489e7e8c00e40d465b01d4dcf9087cb82a8c0125','feat: builds e Quality Gates em grupos separados na execucao','02/10 · Kelvi Marim','Repos › vanilla-release › Commits, branch master.','vanilla-release'],
-      ['Build',94346,'Execução 2026.10.02 (release teste-3)','Sucesso · única execução bem-sucedida','Pipelines › vanilla-release › Runs › #94346.'],
-      ['PBI',72947,'Criação das esteiras de CI/CD','Em Produção desde 24/09','Boards › Sprints › Sprint 0 › PBI #72947.']]],
-    ['E08',0,'Em adoção','O BFF da POC já tem a arquitetura base mergeada em homolog. O PBI de configuração segue em desenvolvimento no board.',[
+            ['PBI',72947,'Criação das esteiras de CI/CD','Em Produção desde 24/09','Boards › Sprints › Sprint 0 › PBI #72947.']]],
+    ['E08',0,'Em adoção','O BFF da POC já tem a arquitetura base mergeada em homolog, e o PBI de configuração foi para homologação em 06/10 com as 3 tasks concluídas.',[
       ['PR',11532,'BFF: arquitetura base (brand, cache, logs, rotas home/dispo/brand)','Concluído em 02/10 · alvo homolog','Repos › jca-edge-bff › Pull requests › Concluídos › #11532.','jca-edge-bff'],
-      ['PBI',73810,'Configuração do BFF','Em Desenvolvimento · Eugenio Mbi','Boards › Sprints › Sprint 1 › PBI #73810.'],
+      ['PBI',73810,'Configuração do BFF','Em homologação desde 06/10 · Eugenio Mbi','Boards › Sprints › Sprint 1 › PBI #73810.'],
       ['PBI',72935,'Criação dos Repositórios BFF','Em Produção desde 21/09','Boards › Sprints › Sprint 0 › PBI #72935.']]],
-    ['E06',4,'Em adoção','A parametrização por marca (white-label) e o Next.js Multi-Zones estão em PRs abertos nos três fronts, ligados a tasks da Sprint 1.',[
-      ['Task',74216,'Configurar parametrização baseado nas marcas','Em Elaboração · Antonio Balbino','Sprint 1 › filha do PBI #73805.'],
+    ['E06',4,'Em adoção','As tasks de parametrização por marca (white-label) e de Next.js Multi-Zones foram fechadas em 06/10, mas só o PR do checkout (11533) foi mergeado; os de account (11537) e institutional (11530 e 11535) seguem abertos.',[
+      ['Task',74216,'Configurar parametrização baseado nas marcas','Pronto em 06/10 · Antonio Balbino','Sprint 1 › filha do PBI #73805.'],
       ['PR',11537,'feat(74216): Parametrização por marca (white-label)','Ativo · alvo homolog','Repos › jca-zone-fe-account › Pull requests › #11537. Outro PR do mesmo tema: jca-zone-fe-institutional #11530.','jca-zone-fe-account'],
       ['Commit','0de5f02790c1e3e4380edae7de9f715a72641315','feat: parameterization from brand','02/10 · Antonio Balbino','Repos › jca-zone-fe-checkout › Commits, branch master.','jca-zone-fe-checkout'],
       ['Task',74222,'Configuração Multi-zones','Em Elaboração · Antonio Balbino','Sprint 1 › filha do PBI #73805. PR jca-zone-fe-checkout #11533 mergeado em 05/10; jca-zone-fe-institutional #11535 segue aberto.']]],
@@ -1152,6 +1146,8 @@ const ADO={
       ['Spike',72515,'Análise do Fluxo de Compra da Wemobi | Tealeaf + Análise de Telas Claude','Done em 30/08 · João Roberto','Boards › Work items › #72515, iteração Sprint 0, filho do MT #72232 (Discovery de Produto).']]]
   ],
   prs:[ // [id, repositório, título, autor, data, status, alvo]
+    [11563,'vanilla-release','Ambiente, squad e marca no disparo da release','Kelvi Marim','2026-10-05','Concluído','master'],
+    [11557,'vanilla-release','Release sem Quality Gate (o gate passa para o PR)','Kelvi Marim','2026-10-05','Concluído','master'],
     [11537,'jca-zone-fe-account','Parametrização por marca (white-label)','Antonio Balbino','2026-10-02','Ativo','homolog'],
     [11535,'jca-zone-fe-institutional','Configuração do Next.js Multi-Zones','Antonio Balbino','2026-10-02','Ativo','homolog'],
     [11533,'jca-zone-fe-checkout','Configuração Next Multi-Zones','Antonio Balbino','2026-10-02','Concluído','homolog'],
@@ -1165,32 +1161,6 @@ const ADO={
     [11466,'JCA.Common.ArchRef FRONT','Homolog','Mauro Cesar','2026-09-29','Concluído','master'],
     [11313,'JCA.Common.ArchRef FRONT','Atualização da documentação','Antonio Balbino','2026-09-17','Concluído','master']
   ]
-};
-
-/* ---------- Produtividade por pessoa (retrato do azure-devops-audit, out/sprints e out/repos) ----------
-   Uma entrada por sprint lida. rows: [nome, papel, PRs abertos, PRs mergeados, commits, revisões feitas].
-   PRs abertos = criados na sprint; mergeados = concluídos na sprint; commits = únicos por repositório, pela data de autoria;
-   revisões = votos em PRs de outra pessoa. Só os 5 repositórios do Vanilla (jca-edge-* e jca-zone-fe-*). */
-const PROD={
-  when:'2026-10-05T17:03',
-  sp:{
-    0:{rows:[
-        ['Antonio Balbino','Dev Frontend',0,0,7,0],
-        ['Eugenio Mbi','Dev BFF',0,0,2,0],
-        ['Kelvi Marim','DevOps',0,0,2,0]],
-      notes:['Nenhum PR foi aberto nos repositórios do Vanilla na Sprint 0: os commits de criação dos repositórios entraram direto nas branches.',
-        'Commits com e-mail de fora do domínio JCA foram somados à pessoa: 3 do Antonio e 2 do Eugenio.']},
-    1:{rows:[
-        ['Antonio Balbino','Dev Frontend',4,1,18,4],
-        ['Eugenio Mbi','Dev BFF',1,1,10,1],
-        ['Kelvi Marim','DevOps',6,0,17,0],
-        ['Helder','Tech Lead',0,0,0,3],
-        ['Mauro Cesar','Fora da lista do squad',0,0,2,0],
-        ['Renovate','Conta de automação',0,0,5,0]],
-      notes:['Dos 6 PRs do Kelvi, 5 são "Configure Renovate", abertos desde 30/09, e 1 é um teste do SonarCloud, abandonado no mesmo dia.',
-        'Os 2 PRs mergeados foram concluídos pelo próprio autor, cada um com uma aprovação de outra pessoa.',
-        'Commits com e-mail de fora do domínio JCA foram somados à pessoa: 11 do Antonio e 9 do Eugenio.']}
-  }
 };
 
 // k: id, g: grupo, n: nome, u: unidade, b: baseline (texto), t: meta (texto), tn: meta numérica ou array por sprint, dir: up/down, own: est/arq, src
@@ -1573,8 +1543,8 @@ function showPg(pg,push=true){
 document.querySelectorAll('#pocNav button').forEach(b=>b.onclick=()=>showPg(b.dataset.pg));
 
 let ownF='';
-function renderPOC(){renderSprintChips();renderSprintPage();renderSprintBox();renderProd();renderRoadmap();renderAdocao();renderKpiPage();renderFlow()}
-function setSprint(i){state.poc.sel=i;saveSel();renderSprintChips();renderSprintPage();renderSprintBox();renderProd();renderKpiPage()}
+function renderPOC(){renderSprintChips();renderSprintPage();renderSprintBox();renderRoadmap();renderAdocao();renderKpiPage();renderFlow()}
+function setSprint(i){state.poc.sel=i;saveSel();renderSprintChips();renderSprintPage();renderSprintBox();renderKpiPage()}
 
 function renderSprintChips(){
   const si=selSprint(),cur=currentSprint();
@@ -1672,11 +1642,11 @@ function drawBurnup(M){
   s+=`<path d="M${x(0)} ${y(0)} ${d.done.map((v,i)=>`L${x(i)} ${y(v)}`).join(' ')} L${x(last)} ${y(0)} Z" fill="var(--c-done)" opacity=".12"/>`;
   s+=`<path d="${d.done.map((v,i)=>`${i?'L':'M'}${x(i)} ${y(v)}`).join(' ')}" fill="none" stroke="var(--c-done)" stroke-width="2.5" stroke-linejoin="round"/>`;
   let cap;
-  if(M.status==='running'){const rate=d.done[last]/M.day,proj=d.done[last]+rate*(n-1-last);
+  if(M.status==='running'){const reg=d.reg||0,rate=(d.done[last]-reg)/M.day,proj=d.done[last]+rate*(n-1-last);
     s+=`<line x1="${x(last)}" y1="${T}" x2="${x(last)}" y2="${H-B}" stroke="var(--line-2)" stroke-dasharray="2 3"/>`;
     s+=`<path d="M${x(last)} ${y(d.done[last])} L${x(n-1)} ${y(proj)}" fill="none" stroke="var(--bad)" stroke-width="2" stroke-dasharray="5 4"/>`;
     s+=`<circle cx="${x(n-1)}" cy="${y(proj)}" r="4" fill="var(--card)" stroke="var(--bad)" stroke-width="2" ${tipAttr('Projeção para '+M.dates[n-1],`cerca de ${Math.round(proj)} de ${scopeNow} ${d.unit} no ritmo atual`)}/><text x="${x(n-1)-8}" y="${y(proj)-10}" text-anchor="end" class="lbl-b" style="fill:var(--bad)">~${Math.round(proj)}</text>`;
-    cap=`O escopo foi de ${d.scope[0]} para ${scopeNow} ${d.unit} durante a sprint. No ritmo atual de ${nf(rate)} por dia, a sprint fecha com cerca de ${Math.round(proj)} concluídas.`;
+    cap=`O escopo foi de ${d.scope[0]} para ${scopeNow} ${d.unit} durante a sprint. No ritmo atual de ${nf(rate)} por dia, a sprint fecha com cerca de ${Math.round(proj)} concluídas.${reg?` O ritmo desconta as ${reg} tasks registradas já concluídas em ${M.dates[last]}.`:''}`;
   }else cap=`${d.done[last]} de ${scopeNow} ${d.unit} concluídos; o escopo ${d.scope[0]===scopeNow?'não mudou':'mudou'} durante a sprint.`;
   s+=`<text x="${x(n-1)-8}" y="${y(scopeNow)-8}" text-anchor="end" class="lbl">${scopeNow} no escopo</text>`;
   d.done.forEach((v,i)=>s+=`<circle cx="${x(i)}" cy="${y(v)}" r="${i===last?5:3.5}" fill="var(--c-done)" stroke="var(--card)" stroke-width="2" ${tipAttr(`${M.dates[i]} · dia ${i+1}`,`${v} de ${d.scope[i]} ${d.unit} concluídos`)}/>`);
@@ -1686,16 +1656,16 @@ function drawVitals(M){$('#hVitals').innerHTML=[...M.vitals].sort((a,b)=>({bad:0
 /* Subtasks de cada PBI (filhos do tipo Task no Azure DevOps). Estado: done=Pronto, dev=Em Elaboração, ns=A Fazer. Data: conclusão (done) ou início (dev). */
 const TASKS={
   72936:[[73072,'bootstrap cypress','done','Carlos Eduardo','2026-09-16'],[73073,'Criar repositório no projeto da organização','done','Carlos Eduardo','2026-09-16']],
-  73810:[[73866,'Estrutura de pastas e componentes','done','Eugenio Mbi','2026-10-05'],[73867,'Estrutura de testes unitários/integrado','done','Eugenio Mbi','2026-10-05'],[73868,'Elaboração do tooling','dev','Eugenio Mbi','2026-09-30']],
-  73805:[[73865,'Configurar K6','done','Carlos Eduardo','2026-09-29'],[73809,'Configuração de libs de padronização do projeto','done','Antonio Balbino','2026-10-01'],[73807,'Configuração do Sonar','done','Kelvi Marim','2026-10-05'],[73808,'Configuração do dependabot','done','Kelvi Marim','2026-10-05'],[74222,'Configuração multi-zones','dev','Antonio Balbino','2026-10-02'],[74216,'Configurar parametrização baseada nas marcas','dev','Antonio Balbino','2026-10-02']],
+  73810:[[73866,'Estrutura de pastas e componentes','done','Eugenio Mbi','2026-10-05'],[73867,'Estrutura de testes unitários/integrado','done','Eugenio Mbi','2026-10-05'],[73868,'Elaboração do tooling','done','Eugenio Mbi','2026-10-06']],
+  73805:[[73865,'Configurar K6','done','Carlos Eduardo','2026-09-29'],[73809,'Configuração de libs de padronização do projeto','done','Antonio Balbino','2026-10-01'],[73807,'Configuração do Sonar','done','Kelvi Marim','2026-10-05'],[73808,'Configuração do dependabot','done','Kelvi Marim','2026-10-05'],[74222,'Configuração multi-zones','done','Antonio Balbino','2026-10-06'],[74216,'Configurar parametrização baseada nas marcas','done','Antonio Balbino','2026-10-06']],
   73609:[[73875,'Análise da central de configuração','done','Matheus Cardoso','2026-10-01'],[73992,'[Back] Criação do endpoint back api de configuração','done','Matheus Cardoso','2026-10-01'],[73871,'[Back] Criação do endpoint back','dev','Matheus Cardoso','2026-10-01'],[73870,'[BFF] Criação do endpoint ofertas','ns','Lucas Figueiredo'],[73881,'Documentação no Backstage','ns','João Roberto'],[73887,'Teste de contrato BFF x Back','ns','João Roberto']],
-  73869:[[74160,'POC Pact Broker','dev','Carlos Eduardo','2026-10-01'],[74214,'Integração: Front → Pact Broker','ns','Carlos Eduardo'],[74215,'Integração: BFF → Pact Broker','ns','Carlos Eduardo']],
-  74161:[],
+  73869:[[74141,'Subir o Pact Broker em homologação (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74160,'POC Pact Broker','dev','Carlos Eduardo','2026-10-01'],[74214,'Integração: Front → Pact Broker','dev','Carlos Eduardo','2026-10-06'],[74215,'Integração: BFF → Pact Broker','dev','Carlos Eduardo','2026-10-06']],
+  74161:[[74055,'Publicar os fronts jca-zone-fe no GitOps em homologação (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74058,'Publicar o jca-edge-bff no GitOps em homologação (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74064,'Criar o DNS interno dos fronts e do BFF em homologação (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74207,'Implementar o canário por release em homologação (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74209,'Criar a pipeline de release acoplada (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74437,'Release manual com escolha de build e caminho direto (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74438,'Remover as pipelines individuais (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74439,'Publicar a documentação da release no Backstage (trazida do JCA_DEVOPS)','done','Kelvi Marim','2026-10-06'],[74680,'Release segmentada por tempo e caminho escolhido no disparo','done','Kelvi Marim','2026-10-06'],[74681,'Marcas do checkout como implantações próprias','done','Kelvi Marim','2026-10-06'],[74682,'Rollback da release escolhendo a release anterior','done','Kelvi Marim','2026-10-06'],[74683,'Quality Gate do SonarCloud no PR dos repositórios do Vanilla','done','Kelvi Marim','2026-10-06'],[74684,'Release por ambiente e squad, marca em lista e esperas em horas','done','Kelvi Marim','2026-10-06'],[74685,'Separar o Vanilla em um AppProject próprio no Argo CD','done','Kelvi Marim','2026-10-06']],
   73811:[[73904,'Botão','ns',''],[73906,'Input','ns',''],[73907,'Carrossel de parceiros','ns',''],[73908,'Tipografia','ns',''],[73909,'Header','ns',''],[73910,'Footer','ns',''],[73911,'73904 (título sem descrição)','ns',''],[73922,'Componente da lojinha','ns','']],
   73610:[[73892,'[Back] Endpoint mais comprados','ns',''],[73893,'[BFF] Criação do endpoint mais comprados','ns',''],[73894,'Documentação no Backstage','ns',''],[73895,'Teste de contrato BFF x Back','ns','']],
   73611:[[73877,'[Back] Endpoint novo de outros também compram','ns','João Roberto'],[73878,'Análise do cache criado pela venda ecom','ns','João Roberto'],[73879,'[BFF] Criação do endpoint outros também compraram','ns','João Roberto'],[73880,'Documentação no Backstage','ns','João Roberto'],[73886,'Teste de contrato BFF x Back','ns','João Roberto']],
   73613:[[73900,'[Back] Criar endpoint de parceiros e operadores','ns','João Roberto'],[73901,'[BFF] Criar endpoint de parceiros e operadores','ns','João Roberto'],[73902,'Documentação Backstage','ns','João Roberto'],[73903,'Teste de contrato BFF x Back','ns','João Roberto']],
-  74638:[[74639,'[Back] Criar estrutura de classificação da Place para tipo de embarque e ícone','ns','Lucas Figueiredo'],[74640,'[Back] Evoluir endpoint Location para utilizar classificação da Place','ns','Lucas Figueiredo'],[74645,'[BFF] Disponibilizar origens e destinos para a Lojinha','ns','']]
+  74638:[[74639,'[Back] Criar estrutura de classificação da Place para tipo de embarque e ícone','dev','Lucas Figueiredo','2026-10-06'],[74640,'[Back] Evoluir endpoint Location para utilizar classificação da Place','ns','Lucas Figueiredo'],[74645,'[BFF] Disponibilizar origens e destinos para a Lojinha','ns','Lucas Figueiredo']]
 };
 const PO_NAMES=['João Roberto'];
 const openPbis=new Set();
@@ -1741,19 +1711,6 @@ function renderRecovery(i){
   $('#recov').querySelectorAll('[data-rv]').forEach(el=>el.addEventListener(el.tagName==='SELECT'?'change':'input',()=>{const r=items[+el.dataset.rv];r[el.dataset.k]=el.value;if(el.tagName==='SELECT'){el.dataset.v=el.value;el.closest('tr').classList.toggle('done',el.value==='Feito')}persist('recovery','s'+i,el.tagName==='SELECT'?0:600)}));
   $('#recov').querySelectorAll('[data-rvdel]').forEach(b=>b.onclick=()=>{items.splice(+b.dataset.rvdel,1);persist('recovery','s'+i,0);renderRecovery(i)});
   applyRO();
-}
-
-/* Produtividade por pessoa: PRs, commits e revisões da sprint selecionada */
-function renderProd(){
-  const si=selSprint(),P=PROD.sp[si],[wd,wt]=PROD.when.split('T'),run=si===currentSprint();
-  $('#prodSub').textContent=`PRs, commits e revisões de cada pessoa na ${SL(si)}, lidos no Azure DevOps nos 5 repositórios do Vanilla. Serve para acompanhar o ritmo e a regra de um PR por item, sem ranquear pessoas.`;
-  if(!P){$('#prodBox').innerHTML=`<p class="cap" style="margin:0">Sem leitura para esta sprint. Os números aparecem aqui a partir da primeira leitura dos repositórios durante a sprint.</p>`;return}
-  const tot=[2,3,4,5].map(k=>P.rows.reduce((s,r)=>s+r[k],0)),num=v=>`<td class="n${v?'':' z'}">${v}</td>`;
-  $('#prodBox').innerHTML=`<table class="etab prod"><thead><tr><th>Pessoa</th><th class="n">PRs abertos</th><th class="n">PRs mergeados</th><th class="n">Commits</th><th class="n">Revisões feitas</th></tr></thead>
-    <tbody>${P.rows.map(r=>`<tr><td><b>${esc(r[0])}</b><small>${esc(r[1])}</small></td>${r.slice(2).map(num).join('')}</tr>`).join('')}</tbody>
-    <tfoot><tr><td>Total da sprint</td>${tot.map(v=>`<td class="n">${v}</td>`).join('')}</tr></tfoot></table>
-    <p class="foot-note">Lido em ${fmtD(wd)}, ${wt.replace(':','h')}${run?' · sprint em andamento, números parciais':''}. PRs abertos são os criados na sprint e mergeados, os concluídos nela. Commits contam uma vez por repositório, pela data de autoria, e incluem os de merge. Revisões são votos em PRs de outra pessoa; comentário sem voto não conta.</p>
-    ${P.notes.map(n=>`<p class="foot-note" style="margin-top:4px">${esc(n)}</p>`).join('')}`;
 }
 
 /* Acompanhamento da sprint (meta, cerimônias, notas) */
@@ -1959,9 +1916,9 @@ function renderFlow(){
      if(day!==prevDay){if(i)s+=`<line x1="${x(i)-step/2}" y1="12" x2="${x(i)-step/2}" y2="44" stroke="var(--line-2)" stroke-dasharray="2 3"/>`;s+=`<text x="${x(i)}" y="${H-10}" ${i?'':'text-anchor="start"'}>${fmtShort(day)}</text>`;prevDay=day}
      s+=`<circle cx="${x(i)}" cy="28" r="7" fill="${runCol[r[2]]}" stroke="var(--card)" stroke-width="2" ${tipAttr(`Build ${r[0]}`,`${fmtShort(day)}, ${hr} · ${lab[r[2]]} · release ${r[3]}`)}/>`});
    $('#adoRuns').innerHTML=s+'</svg>';
-   $('#runCap').textContent=`Pipeline vanilla-release, criada em 02/10. ${ADO.runs.length} execuções em ordem, ${ADO.runs.filter(r=>r[2]==='ok').length} com sucesso e ${ADO.runs.filter(r=>r[2]==='parcial').length} parciais. Nenhuma publicou em produção.`;}
+   $('#runCap').textContent=`Pipeline vanilla-release, criada em 02/10. ${ADO.runs.length} execuções em ordem, ${ADO.runs.filter(r=>r[2]==='ok').length} com sucesso e ${ADO.runs.filter(r=>r[2]==='parcial').length} parciais. Desde 05/10 à noite publica em homologação; nenhuma em produção.`;}
   const act=ADO.prs.filter(p=>p[5]==='Ativo').length;
-  $('#adoPrSub').textContent=`${ADO.prs.length} PRs no projeto: ${act} ativos e ${ADO.prs.length-act} concluídos. Dois PRs de funcionalidade já entraram em homolog: a arquitetura base do BFF (11532, em 02/10) e o multi-zones do checkout (11533, em 05/10). Os 5 PRs do Renovate seguem abertos desde 30/09.`;
+  $('#adoPrSub').textContent=`${ADO.prs.length} PRs no projeto: ${act} ativos e ${ADO.prs.length-act} concluídos. Dois PRs de funcionalidade já entraram em homolog: a arquitetura base do BFF (11532, em 02/10) e o multi-zones do checkout (11533, em 05/10). Na esteira, 2 PRs de 05/10 levaram ambiente, squad e marca para o disparo da release e tiraram dela o Quality Gate, que passa a rodar no PR. Os 5 PRs do Renovate seguem abertos desde 30/09.`;
   $('#prCount').textContent=`${act} ativos · ${ADO.prs.length-act} concluídos`;
   $('#adoPrs').innerHTML=`<thead><tr><th>PR</th><th>Repositório</th><th>Título</th><th class="hide-m">Autor</th><th class="hide-m">Aberto em</th><th>Status</th></tr></thead><tbody>${ADO.prs.map(([id,rp,ti,au,dt,st,tg])=>`<tr><td>${id}</td><td style="font-size:12.5px">${esc(rp)}<div style="color:var(--muted)">→ ${esc(tg)}</div></td><td>${esc(ti)}</td><td class="hide-m">${esc(au)}</td><td class="hide-m">${fmtD(dt)}</td><td><span class="chip ${st==='Ativo'?'c-blue':'c-ok'}">${esc(st)}</span></td></tr>`).join('')}</tbody>`;
 }
